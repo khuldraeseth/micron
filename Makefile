@@ -6,4 +6,5 @@ exec: main.cpp $(shell find include -type f) Makefile
 	g++ $(FLAGS) -o exec main.cpp
 
 .PHONY: clean
-clean: rm -fr exec
+clean:
+	rm -fr exec
