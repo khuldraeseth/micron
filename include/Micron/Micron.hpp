@@ -5,9 +5,10 @@
 #include <type_traits>
 #include <utility>
 
-#include "Either.hpp"
-#include "List.hpp"
-#include "Unit.hpp"
+#include <Data/Either.hpp>
+#include <Data/List.hpp>
+#include <Data/String.hpp>
+#include <Data/Unit.hpp>
 
 
 using Error = String;

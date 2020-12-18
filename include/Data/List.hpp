@@ -26,15 +26,6 @@ std::ostream& operator<<(std::ostream& ost, std::shared_ptr<Node<T>> n) {
     return ost << n->mVal << ',' << n->mNext;
 }
 
-template <>
-std::ostream& operator<<(std::ostream& ost, std::shared_ptr<Node<char>> n) {
-    if (n == nullptr) {
-        return ost;
-    }
-
-    return ost << n->mVal << n->mNext;
-}
-
 template <typename T>
 struct List {
     std::shared_ptr<Node<T>> const mHead {};
@@ -42,8 +33,6 @@ struct List {
     List() = default;
     List(std::shared_ptr<Node<T>> head) : mHead{head} {}
 };
-
-using String = List<char>;
 
 template <typename T>
 List<T> nil {};
@@ -68,11 +57,6 @@ std::ostream& operator<<(std::ostream& ost, List<T> xs) {
     return ost << '[' << xs.mHead << ']';
 }
 
-template <>
-std::ostream& operator<<(std::ostream& ost, String xs) {
-    return ost << '"' << xs.mHead << '"';
-}
-
 template <typename T>
 List<T> operator|=(T const& x, List<T> xs) {
     return {std::make_shared<Node<T>>(x, xs.mHead)};
@@ -89,12 +73,4 @@ List<T> operator&=(List<T> xs, List<T> ys) {
     }
 
     return head(xs) |= tail(xs) &= ys;
-}
-
-String operator""_s(char const* s, unsigned long n) {
-    if (n == 0) {
-        return nil<char>;
-    }
-
-    return *s |= operator""_s(s+1, n-1);
 }

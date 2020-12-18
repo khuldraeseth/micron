@@ -1,12 +1,8 @@
 #include <iostream>
 
-#include "Either.hpp"
-#include "List.hpp"
-#include "Micron.hpp"
+#include <Data/String.hpp>
+#include <Micron/Micron.hpp>
 
-int plus(char x, char y) {
-    return (x - '0') + (y - '0');
-}
 
 int main() {
     String foo = "47254 824673r"_s;
