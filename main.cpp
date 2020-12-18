@@ -4,8 +4,14 @@
 #include <Micron/Micron.hpp>
 
 
-int main() {
-    String foo = "47254 824673r"_s;
+auto const oneChar = [](char c) -> Micron<char> {
+    return satisfy([c](char x) { return x == c; });
+};
 
-    std::cout << runMicron(then(then(many(digit), spaces), many(digit)), foo) << std::endl;
+Micron<char> repeated = bind<char>(digit, oneChar);
+
+int main() {
+    String foo = "447722cc54 824673r"_s;
+
+    std::cout << runMicron(many(orElse(repeated, alpha)), foo) << std::endl;
 }
