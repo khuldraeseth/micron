@@ -19,3 +19,7 @@ struct Micron {
 auto const runMicron = [](auto ma, auto s) {
     return ma.fn(s).second;
 };
+
+template <typename T> struct UnMicron {};
+template <typename T> struct UnMicron<Micron<T>> { using type = T; };
+template <typename T> using UnMicronT = UnMicron<T>::type;

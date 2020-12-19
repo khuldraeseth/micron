@@ -68,8 +68,7 @@ auto const liftA2 = []<typename Fn, typename A, typename B>(Fn f, Micron<A> ma, 
     return ap(fmap(curry(f), ma), mb);
 };
 
-template <typename B>
-auto const bind = [](auto ma, auto f) -> Micron<B> {
+auto const bind = []<typename Fn, typename A, typename B = UnMicronT<std::invoke_result_t<Fn,A>>>(Micron<A> ma, Fn f) -> Micron<B> {
     return {[ma,f](String s) {
         auto const [s1, r1] = ma.fn(s);
         if (isLeft(r1)) {

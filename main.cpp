@@ -4,7 +4,7 @@
 #include <Micron/Micron.hpp>
 
 
-Micron<char> repeated = bind<char>(digit, oneChar);
+Micron<char> const repeated = bind(digit, oneChar);
 
 int main() {
     String foo = "447722cc54 824673r"_s;
